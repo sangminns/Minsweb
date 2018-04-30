@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Min Yoo</title>
+    
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%#= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+
+    <!--반응형 웹디자인-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Jquery CDN-->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <!-- Materialize CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <!--typing font api-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kavivanar">
+  </head>
+  <body>
+    
+      <%= render "home/header" %>
+      
+      <%= yield %>
+
+      <%= render "home/footer" %>
+  
+    <script>
+    
+     $(".button-collapse").sideNav();
+     
+    //nav바 메뉴탭 이동
+    	$(function(){
+        var menu = $('.menu ul li a');
+        menu.on('click', function(){
+          $('.menu a.selected').removeClass('selected');
+          $(this).addClass('selected');
+        });
+
+        $('.menu ul li a').on('click', function(){  
+          $('.menu ul li a').removeClass('active');
+				  $('.tab_content').removeClass('active');
+			  	$(this).addClass('active');
+			  	
+          var activeTab = $(this).attr("data-tab");
+          $('#' + activeTab).addClass('active');
+          return false;
+        });
+    	});
+    	//typing and erasing title
+      var TxtRotate = function(el, toRotate, period) {
+        this.toRotate = toRotate;
+        this.el = el;
+        this.loopNum = 0;
+        this.period = parseInt(period, 10) || 2000;
+        this.txt = '';
+        this.tick();
+        this.isDeleting = false;
+      };
+      
+      TxtRotate.prototype.tick = function() {
+        var i = this.loopNum % this.toRotate.length;
+        var fullTxt = this.toRotate[i];
+      
+        if (this.isDeleting) {
+          this.txt = fullTxt.substring(0, this.txt.length - 1);
+        } else {
+          this.txt = fullTxt.substring(0, this.txt.length + 1);
+        }
+      
+        this.el.innerHTML = '<span class="wrap">'+'&ensp;'+this.txt+'</span>';
+      
+        var that = this;
+        var delta = 200 - Math.random() * 100;
+      
+        if (this.isDeleting) { delta /= 2; }
+      
+        if (!this.isDeleting && this.txt === fullTxt) {
+          delta = this.period;
+          this.isDeleting = true;
+        } else if (this.isDeleting && this.txt === '') {
+          this.isDeleting = false;
+          this.loopNum++;
+          delta = 500;
+        }
+      
+        setTimeout(function() {
+          that.tick();
+        }, delta);
+      };
+      
+      window.onload = function() {
+        var elements = document.getElementsByClassName('txt-rotate');
+        for (var i=0; i<elements.length; i++) {
+          var toRotate = elements[i].getAttribute('data-rotate');
+          var period = elements[i].getAttribute('data-period');
+          if (toRotate) {
+            new TxtRotate(elements[i], JSON.parse(toRotate), period);
+          }
+        }
+        // INJECT CSS
+        var css = document.createElement("style");
+        css.type = "text/css";
+        css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
+        document.body.appendChild(css);
+      };
+      
+      // modal
+      $(document).ready(function(){
+        $('.materialboxed').materialbox();
+      });
+
+    </script>
+  </body>
+</html>

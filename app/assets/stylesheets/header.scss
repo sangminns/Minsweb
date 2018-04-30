@@ -1,0 +1,48 @@
+//title
+.title {
+    font-family: 'Kavivanar';
+    font-weight: bold;
+    text-align: center;
+    margin: 5%;
+}
+
+//nav 
+.menu {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.menu ul {
+    padding: 0;
+}
+
+.menu ul li {
+    list-style: none;
+    display: inline-block;
+}
+
+.menu ul li a {
+    color:  #809098;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+    margin: 0 20px auto;
+    line-height: 2;
+    text-decoration: none;
+    text-transform: uppercase;
+}      
+
+.menu ul li a.selected {
+  color:  #435762;
+  border-bottom: 2px solid #4db3e3;
+  padding-bottom: 6px;
+}
+
+@media (max-width: 600px) {
+    .menu{
+        display:none;
+    }
+
+}

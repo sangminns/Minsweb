@@ -1,0 +1,146 @@
+ <!--탭 콘텐츠 영역 -->
+<div class="container">
+  <section id="tab1" class="tab_content active">
+    <!--Profile-->
+    <div class="row main_1">
+      <div class="col s12 m6 l6">
+        <img class="responsive-img mainimg" src="<%= image_path('2.jpeg') %>">
+      </div>
+      <div class="col s12 m6 l6">
+        <p style="font-weight: bold">Sangmin, Kim</p>
+        <p>1993 . 10 . 10</p>
+        <p>Kookmin_Univ. Software</p>
+        <p>Likelion 4th. Member</p>
+        <p>Likelion 5th. School Representative</p><hr>
+        <p>
+          <p>
+            Email : ksm372510@gmail.com
+          </p>
+          <div class="row">
+            <div class="col s4"><a href="https://www.facebook.com/ksm357"><img class="responsive-img logo" src="<%= image_path('fb.png') %>"></a> </div>
+            <div class="col s4"><a href="https://www.instagram.com/sangmin_ins"><img class="responsive-img logo" src="<%= image_path('insta.png') %>"></a></div>
+            <div class="col s4"><a href="https://www.github.com/ksm357"><img class="responsive-img logo" src="<%= image_path('github.png') %>"></a></div>
+          </div>
+        </p>
+      </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div class="row main_2">
+      <p>
+        <b>대외활동 경력</b><br>
+        2017. 07.11 남부지역 중학생 60명 내외 대상으로 꿈NUM꿈 대학생 토크콘서트 참여 - 웹 분야 설명 및 멘토링<br>
+        2017. 03 ~ 2017. 11 '멋쟁이 사자처럼' 5기 국민대학교 대표 및 운영진(튜터)으로 활동.<br>
+        2016. 03 ~ 2016. 08 '멋쟁이 사자처럼' 4기 멤버로 활동<br>
+        <br>
+        <b>자격증 경력</b><br>
+        컴퓨터 활용 능력 1급 준비 중<br>
+        정보처리기사 자격증 준비 중<br>
+      </p>
+    </div>
+  </section>
+</div>
+
+<%= render "home/products" %>
+      
+<%= render "home/images" %>
+
+
+  
+  <section id="tab4" class="tab_content">
+    <!--Visitor-->
+    <div class="row">
+      <div class="row">
+        <div class="col s4">
+          
+        </div>
+        <div class="input-field col s4">
+          <input id="input_text" class=" boardNickname_1" type="text" data-length="10" name="inputNickname">
+          <label for="input_text">Nickname</label>
+        </div>
+        <div class="col s4">
+          
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s4">
+          
+        </div>
+        <div class="input-field col s4">
+          <textarea id="textarea1" class="materialize-textarea boardContent_1" data-length="120" name="inputContent"></textarea>
+          <label for="textarea1">Comment</label>
+        </div>
+        <div class="col s4">
+          
+        </div>
+      </div>
+      
+      <div class="row">
+        <!--<button class="btn waves-effect waves-light boardSubmit" type="submit" name="action">-->
+        <!--  Submit-->
+        <!--</button>-->
+        <button value="1" class="btn-floating btn-large cyan pulse boardSubmit" type="submit">Submit</button>
+      </div>
+    </div>
+    <br><hr>
+    <div class="row">
+      <div id="oneBoard">
+        <% @everyBoard.each do |b| %>
+          <div class="col s3 m3">
+            <div class="card horizontal">
+              <div class="card-stacked">
+                <div class="card-content">
+                  <p><%= b.content %></p>
+                </div>
+                <div class="card-action">
+                  <b><%= b.nickname %></b>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--<div class="col s3 commentWindow">-->
+
+          <!--</div>-->
+        <% end %>
+      </div>
+    </div>
+    
+  </section>
+  
+  <!--<section id="tab5" class="tab_content">-->
+    <!--About-->
+  <!--  <div class="row">-->
+      
+  <!--  </div>-->
+  <!--</section>-->
+
+<script>
+
+  $(function() { 
+    $(".boardSubmit").click(function() { 
+        // boardId = this.value;
+        boardNickname = $(".boardNickname_1").val();
+        boardContent = $(".boardContent_1").val();
+       
+        $.ajax({
+          method: "POST",
+          url: "/upload",
+          data: {inputNickname: boardNickname, inputContent: boardContent},
+            success: function() {
+                alert( "댓글이 작성되었습니다.");
+                // $("#reply_" + postId).append(postUser);
+                $("#oneBoard").append("<div class='col s3 commentWindow'><b>" + boardNickname + "</b><br>" + boardContent + "</div>");
+                $(".boardNickname_1").val('');
+                $(".boardContent_1").val('');
+            },
+            error: function() {
+                alert( "댓글이 작성되지 않았습니다.");
+            } 
+        })
+        //   .done(function( msg ) {
+        //     alert( "댓글이 작성되었습니다.");
+        //   });
+      });
+  });    
+</script>
