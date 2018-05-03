@@ -25,24 +25,31 @@ section {
 	padding: 7%;
 	height: 100%;
 	width: 100%;
-	// background-color: #F2F3F4;
 	.row {
 		margin: 0;
 	}
 }
 
 #tab1 {
-	// text-align: center;
 	.main_1 {
 		text-align: center;
 	}
 	img.mainimg {
-		border-radius: 50%;
 		max-width: 300px;
+		border-radius: 50%;
 	}
 	img.logo {
 		max-width: 30px;
 	}
+}
+
+@media screen and (max-width: 600px) {
+	#tab1 {
+		img.mainimg {
+			border-radius: 50%;
+			max-width: 250px;
+		}
+	}	
 }
 
 #tab2 {
@@ -63,7 +70,6 @@ section {
 #tab3 {
 	.row {
 		.myImgs {
-			// height: 100px;	
 			img {
 				height: 300px;
 			}
@@ -74,10 +80,24 @@ section {
 #tab4 {
 	text-align: center;
 	#oneBoard {
-		.commentWindow{
-			text-align: center;
-			background-color: white;
-			height: 100px;
-		}
+		.grid-item {
+		  height: 180px;
+		  border: 2px solid #333;
+		  border-color: hsla(0, 0%, 0%, 0.5);
+		  border-radius: 5px;
+		  word-break:break-all;
+		  overflow: hidden;
+		}		
 	}
+}
+
+.scroll {
+    position: fixed;
+    right: 2%;
+    bottom: 2%;
+    z-index: 1;
+}
+
+.scroll a img {
+    width: 60px;
 }

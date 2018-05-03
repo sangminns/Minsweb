@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Min Yoo</title>
-    
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <title>민스웹</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/assets/style.scss">
+    <%#= stylesheet_link_tag    'application', media: 'all' %>
     <%#= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
 
@@ -12,10 +13,9 @@
     <!--Jquery CDN-->
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <!-- Materialize CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <!--typing font api-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kavivanar">
+    <!-- Masonry CDN-->
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
   </head>
   <body>
     
@@ -108,6 +108,22 @@
       // modal
       $(document).ready(function(){
         $('.materialboxed').materialbox();
+      });
+
+
+      function myFunction() {
+          var x = document.getElementById("myNav");
+          if (x.className === "menu") {
+              x.className += " responsive";
+          } else {
+              x.className = "menu";
+          }
+      }
+      
+      $('#menuicon').on('click', function(event) {
+        event.preventDefault();
+        $(this).toggleClass('active');
+        $('.menulist').slideToggle("fast");
       });
 
     </script>

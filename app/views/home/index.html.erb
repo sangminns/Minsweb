@@ -4,7 +4,7 @@
     <!--Profile-->
     <div class="row main_1">
       <div class="col s12 m6 l6">
-        <img class="responsive-img mainimg" src="<%= image_path('2.jpeg') %>">
+        <img class="responsive-img mainimg" src="<%= image_path('profile.png') %>">
       </div>
       <div class="col s12 m6 l6">
         <p style="font-weight: bold">Sangmin, Kim</p>
@@ -30,13 +30,14 @@
     <div class="row main_2">
       <p>
         <b>대외활동 경력</b><br>
-        2017. 07.11 남부지역 중학생 60명 내외 대상으로 꿈NUM꿈 대학생 토크콘서트 참여 - 웹 분야 설명 및 멘토링<br>
-        2017. 03 ~ 2017. 11 '멋쟁이 사자처럼' 5기 국민대학교 대표 및 운영진(튜터)으로 활동.<br>
-        2016. 03 ~ 2016. 08 '멋쟁이 사자처럼' 4기 멤버로 활동<br>
-        <br>
-        <b>자격증 경력</b><br>
+        <i>2017. 07.11</i>  남부지역 중학생 60명 내외 대상으로 꿈NUM꿈 대학생 토크콘서트 참여 - 웹 분야 설명 및 멘토링<br>
+        <i>2017. 03 ~ 2017. 11</i>  '멋쟁이 사자처럼' 5기 국민대학교 대표 및 운영진(튜터)으로 활동.<br>
+        <i>2016. 03 ~ 2016. 08</i>  '멋쟁이 사자처럼' 4기 멤버로 활동<br>
+      </p>
+      <p>
+        <b>자격증 보유</b><br>
         컴퓨터 활용 능력 1급 준비 중<br>
-        정보처리기사 자격증 준비 중<br>
+        정보처리기사 준비 중<br>
       </p>
     </div>
   </section>
@@ -47,100 +48,129 @@
 <%= render "home/images" %>
 
 
-  
+<div class="container"> 
   <section id="tab4" class="tab_content">
     <!--Visitor-->
     <div class="row">
-      <div class="row">
-        <div class="col s4">
-          
-        </div>
-        <div class="input-field col s4">
-          <input id="input_text" class=" boardNickname_1" type="text" data-length="10" name="inputNickname">
-          <label for="input_text">Nickname</label>
-        </div>
-        <div class="col s4">
-          
-        </div>
+      <div class="col s2 m3 l4">
+        
       </div>
-      <div class="row">
-        <div class="col s4">
-          
-        </div>
-        <div class="input-field col s4">
-          <textarea id="textarea1" class="materialize-textarea boardContent_1" data-length="120" name="inputContent"></textarea>
-          <label for="textarea1">Comment</label>
-        </div>
-        <div class="col s4">
-          
-        </div>
+      <div class="input-field col s8 m6 l4">
+        <input id="input_text" class="boardNickname_1" type="text" data-length="10" maxlength="9" name="inputNickname">
+        <label for="input_text">Nickname</label>
       </div>
-      
-      <div class="row">
-        <!--<button class="btn waves-effect waves-light boardSubmit" type="submit" name="action">-->
-        <!--  Submit-->
-        <!--</button>-->
-        <button value="1" class="btn-floating btn-large cyan pulse boardSubmit" type="submit">Submit</button>
+      <div class="col s2 m3 l4">
+        
       </div>
     </div>
-    <br><hr>
     <div class="row">
-      <div id="oneBoard">
-        <% @everyBoard.each do |b| %>
-          <div class="col s3 m3">
-            <div class="card horizontal">
-              <div class="card-stacked">
-                <div class="card-content">
-                  <p><%= b.content %></p>
-                </div>
-                <div class="card-action">
-                  <b><%= b.nickname %></b>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--<div class="col s3 commentWindow">-->
-
-          <!--</div>-->
-        <% end %>
+      <div class="col s2 m3 l4">
+        
+      </div>
+      <div class="input-field col s8 m6 l4">
+        <textarea id="textarea1" class="materialize-textarea boardContent_1" data-length="70" maxlength="69" name="inputContent"></textarea>
+        <label for="textarea1">Comment</label>
+      </div>
+      <div class="col s2 m3 l4">
+        
       </div>
     </div>
-    
+    <br>
+    <div class="row">
+      <button class="btn-floating btn-large cyan pulse boardSubmit" type="submit">Submit</button>
+    </div>
+
+    <br><br><hr>
+    <div class="grid row" id="oneBoard">
+      <% @everyBoard.each do |b| %>
+        <div class="col s6 m4 l3 grid-item">
+          <b><i><%= b.nickname %></i></b>
+          <hr>
+          <p align="left"><%= b.content %></p>
+        </div>
+      <% end %>
+    </div>
   </section>
-  
-  <!--<section id="tab5" class="tab_content">-->
-    <!--About-->
-  <!--  <div class="row">-->
-      
-  <!--  </div>-->
-  <!--</section>-->
+</div>
+
+<div class="scroll" style="display:none;">
+    <a href="#" style="text-decoration:none;"><img src="<%= image_url('top.png') %>"></a>
+</div>
 
 <script>
-
   $(function() { 
     $(".boardSubmit").click(function() { 
-        // boardId = this.value;
+        // input에 작성한 값 변수에 대입 
         boardNickname = $(".boardNickname_1").val();
         boardContent = $(".boardContent_1").val();
+        
+        // 앞,뒤 공백 제거
+        
+        /*
+        ^ : 문자열의 시작
+        \s* : 임의의 개수의 공백 문자, \s 가 공백, * 가 임의의 개수
+        | : OR 기호
+        $ : 문자열의 끝
+        g : 문자열의 모든 부분에 걸쳐 치환
+        '' : 치환할 빈 문자열
+    
+        출처: http://devgwangpal.tistory.com/50 [개발 필기블로그입니다.]
+        */
+        
+        boardNickname.replace(/^\s*/gi, "");
+        boardContent.replace(/^\s*/gi, "" );
+        
+        if((boardNickname == "") || (boardContent == "")) {
+
+            alert("닉네임과 내용을 모두 입력해주세요");
+          
+        } else {
        
-        $.ajax({
-          method: "POST",
-          url: "/upload",
-          data: {inputNickname: boardNickname, inputContent: boardContent},
-            success: function() {
-                alert( "댓글이 작성되었습니다.");
-                // $("#reply_" + postId).append(postUser);
-                $("#oneBoard").append("<div class='col s3 commentWindow'><b>" + boardNickname + "</b><br>" + boardContent + "</div>");
-                $(".boardNickname_1").val('');
-                $(".boardContent_1").val('');
-            },
-            error: function() {
-                alert( "댓글이 작성되지 않았습니다.");
-            } 
-        })
-        //   .done(function( msg ) {
-        //     alert( "댓글이 작성되었습니다.");
-        //   });
+          $.ajax({
+            method: "POST",
+            url: "/upload",
+            data: {inputNickname: boardNickname, inputContent: boardContent},
+              success: function() {
+                  alert( "댓글이 작성되었습니다.");
+                  $("#oneBoard").append(
+                    "<div class='col s6 m4 l3 grid-item'>" +
+                        "<b><i>" + boardNickname + "</i></b><hr>" +
+                        "<p align='left'>" + boardContent + "</p>" +
+                    "</div>"
+                  );
+                  $(".boardNickname_1").val('');
+                  $(".boardContent_1").val('');
+              },
+              error: function() {
+                  alert( "댓글이 작성되지 않았습니다.");
+              } 
+          })
+        }
       });
   });    
+  
+  // $('.grid').masonry({
+  //   itemSelector: '.grid-item'
+  // });
+  
+  $(document).ready(function(){
+  	$('a[href^="/#up"]').on('click',function (e) {
+  	    e.preventDefault();
+  	    
+  	    var target = this.hash;
+  	    var $target = $(target);
+  
+  	    $('html, body').stop().animate({
+  	        scrollTop: $target.offset().top - 80
+  	    }, 700);
+  	});
+  });
+
+  $(window).scroll(function() {
+    $(".scroll").css( "display", "inline");
+  });
+  $(".scroll").click(function() {
+      $('html,body').animate({
+          scrollTop: 0 }, 700);
+  });
 </script>

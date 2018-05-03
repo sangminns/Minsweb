@@ -6,6 +6,16 @@
     margin: 5%;
 }
 
+//header
+header {
+  height: 225px;
+}
+@media screen and (max-width: 600px) {
+  header {
+    height: auto;
+  }
+}
+
 //nav 
 .menu {
     font-family: Arial, Helvetica, sans-serif;
@@ -40,9 +50,44 @@
   padding-bottom: 6px;
 }
 
-@media (max-width: 600px) {
-    .menu{
-        display:none;
-    }
+.menu .icon {
+  display: none;
+}
 
+@media screen and (max-width: 600px) {
+  .menu {
+      ul {
+          display: none;
+      }
+      .icon {
+          float: right;
+          display: block;
+      }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .menu.responsive {
+      position: relative;
+      .icon {
+          position: absolute;
+          right: 0;
+          top: 0;
+      }
+      ul {
+        li {
+          float: none;
+          display: block;
+          text-align: right;
+        }
+      }
+  }
+}
+
+.icon {
+  width: 45px;
+}
+
+#menuicon {
+	cursor: pointer;
 }
