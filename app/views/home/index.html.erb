@@ -43,6 +43,7 @@
  	  <li><i>2014. 03 ~ 2015. 12</i><br> > 육군 병장 만기 전역
         </ul>
       </div>
+      <br>
       <div class="col s6">
         <div class="experience">C E R T I F I C A T I O N S</div>
         <ul>
@@ -54,33 +55,33 @@
   </section>
 
 <%= render "home/products" %>
-      
+
 <%= render "home/images" %>
 
   <section id="tab4" class="tab_content">
     <!--Visitor-->
     <div class="row">
       <div class="col s2 m3 l4">
-        
+
       </div>
       <div class="input-field col s8 m6 l4">
         <input id="input_text" class="boardNickname_1" type="text" data-length="10" maxlength="9" name="inputNickname">
         <label for="input_text">Nickname</label>
       </div>
       <div class="col s2 m3 l4">
-        
+
       </div>
     </div>
     <div class="row">
       <div class="col s2 m3 l4">
-        
+
       </div>
       <div class="input-field col s8 m6 l4">
         <textarea id="textarea1" class="materialize-textarea boardContent_1" data-length="65" maxlength="64" name="inputContent"></textarea>
         <label for="textarea1">Comment</label>
       </div>
       <div class="col s2 m3 l4">
-        
+
       </div>
     </div>
     <br>
@@ -106,14 +107,14 @@
 </div>
 
 <script>
-  $(function() { 
-    $(".boardSubmit").click(function() { 
-        // input에 작성한 값 변수에 대입 
+  $(function() {
+    $(".boardSubmit").click(function() {
+        // input에 작성한 값 변수에 대입
         boardNickname = $(".boardNickname_1").val();
         boardContent = $(".boardContent_1").val();
-        
+
         // 앞,뒤 공백 제거
-        
+
         /*
         ^ : 문자열의 시작
         \s* : 임의의 개수의 공백 문자, \s 가 공백, * 가 임의의 개수
@@ -121,19 +122,19 @@
         $ : 문자열의 끝
         g : 문자열의 모든 부분에 걸쳐 치환
         '' : 치환할 빈 문자열
-    
+
         출처: http://devgwangpal.tistory.com/50 [개발 필기블로그입니다.]
         */
-        
+
         boardNickname.replace(/^\s*/gi, "");
         boardContent.replace(/^\s*/gi, "" );
-        
+
         if((boardNickname == "") || (boardContent == "")) {
 
             alert("닉네임과 내용을 모두 입력해주세요");
-          
+
         } else {
-       
+
           $.ajax({
             method: "POST",
             url: "/upload",
@@ -151,23 +152,23 @@
               },
               error: function() {
                   alert( "댓글이 작성되지 않았습니다.");
-              } 
+              }
           })
         }
       });
-  });    
-  
+  });
+
   // $('.grid').masonry({
   //   itemSelector: '.grid-item'
   // });
-  
+
   $(document).ready(function(){
   	$('a[href^="/#up"]').on('click',function (e) {
   	    e.preventDefault();
-  	    
+
   	    var target = this.hash;
   	    var $target = $(target);
-  
+
   	    $('html, body').stop().animate({
   	        scrollTop: $target.offset().top - 80
   	    }, 700);
