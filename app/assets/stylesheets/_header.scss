@@ -1,9 +1,12 @@
 //title
 .title {
     font-family: 'Kavivanar';
-    font-weight: bold;
     text-align: center;
-    margin: 5%;
+    margin: 3%;
+    .heading {
+      font-size: 45px;
+      font-weight: bold;
+    }
 }
 
 //header
@@ -12,7 +15,16 @@ header {
 }
 @media screen and (max-width: 600px) {
   header {
-    height: auto;
+    height: auto;  
+  }
+  .title {
+    margin-bottom: 0;
+    .heading {
+      font-size: 35px;
+    }
+  }
+  .menulist {
+    margin-top: 0;
   }
 }
 
@@ -50,42 +62,38 @@ header {
   padding-bottom: 6px;
 }
 
-.menu .icon {
+.icon {
   display: none;
 }
 
 @media screen and (max-width: 600px) {
   .menu {
-      ul {
-          display: none;
-      }
-      .icon {
-          float: right;
-          display: block;
-      }
+    ul {
+      display: none;
+    }
+  }
+  .icon {
+    float: right;
+    display: block;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .menu.responsive {
-      position: relative;
-      .icon {
-          position: absolute;
-          right: 0;
-          top: 0;
+  .menu {
+    position: relative;
+    ul {
+      li {
+        float: none;
+        display: block;
+        text-align: right;
       }
-      ul {
-        li {
-          float: none;
-          display: block;
-          text-align: right;
-        }
-      }
+    }
   }
 }
 
 .icon {
   width: 45px;
+  float: right;
 }
 
 #menuicon {

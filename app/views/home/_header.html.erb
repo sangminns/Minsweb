@@ -1,9 +1,11 @@
 <header>
   <div class="title">
-    <h2>Min's
+    <div class="heading">
+      Min's
       <br>
       <span class="txt-rotate" data-period="1000" data-rotate='[ "Portfolio", "Website"]'></span>
-    </h2>
+      <img id="menuicon" class="icon" src="<%= image_path('menuicon') %>">
+    </div>
   </div>  
   <navbar class="menu" id="myNav">
     <ul class="menulist">
@@ -13,8 +15,6 @@
       <li><a href="#" data-tab="tab3">Images</a></li>
       <li><a href="#" data-tab="tab4">Visitors</a></li>
     </ul>
-    
-    <img id="menuicon" class="icon" src="<%= image_path('menuicon') %>" onclick="myFunction()">
 
     <ul class="side-nav" id="mobile-demo">
       <li><a href="#" data-tab="tab1" class="active">Profile</a></li>
@@ -23,6 +23,4 @@
       <li><a href="#" data-tab="tab4">Visitors</a></li>
     </ul>
   </navbar>
-
-  <br>
 </header>

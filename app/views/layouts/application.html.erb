@@ -3,6 +3,10 @@
   <head>
     <title>민스웹</title>
     <meta charset="utf-8">
+    <meta property="og:title" content="민스웹(Minsweb)">
+    <meta property="og:description" content="김상민 개인 홈페이지">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="<%= image_path('thumbnail.png') %>">
     <link rel="stylesheet" href="/assets/style.scss">
     <%#= stylesheet_link_tag    'application', media: 'all' %>
     <%#= javascript_include_tag 'application' %>
@@ -18,7 +22,12 @@
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
   </head>
   <body>
-    
+      <!--window loading-->
+      <div id="loading">
+        <img id="loading-image" src="<%= image_path('loading.gif') %>" alt="Loading..." />
+      </div>
+      <!--출처: http://hunit.tistory.com/309 [HunIT Blog]-->
+      
       <%= render "home/header" %>
       
       <%= yield %>
@@ -26,8 +35,12 @@
       <%= render "home/footer" %>
   
     <script>
-    
-     $(".button-collapse").sideNav();
+    //loading javascript
+      $(window).ready(function() {    
+        $('#loading').fadeOut();  
+      });
+
+      $(".button-collapse").sideNav();
      
     //nav바 메뉴탭 이동
     	$(function(){
@@ -110,22 +123,12 @@
         $('.materialboxed').materialbox();
       });
 
-
-      function myFunction() {
-          var x = document.getElementById("myNav");
-          if (x.className === "menu") {
-              x.className += " responsive";
-          } else {
-              x.className = "menu";
-          }
-      }
-      
+      // mobile navbar
       $('#menuicon').on('click', function(event) {
         event.preventDefault();
         $(this).toggleClass('active');
         $('.menulist').slideToggle("fast");
       });
-
     </script>
   </body>
 </html>
